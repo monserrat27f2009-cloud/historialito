@@ -12,12 +12,20 @@
     <nav class="indigo darken-4" aria-label="Navegación principal">
       <div class="nav-wrapper container">
         <a href="index.html" class="brand-logo">Historialito</a>
-        <ul class="right">
+        <a href="#" data-target="menu-movil" class="sidenav-trigger white-text">Menú</a>
+        <ul class="right hide-on-med-and-down">
           <li class="active"><a href="index.html" aria-current="page">Pacientes</a></li>
-          <li><a href="registro.html">Nuevo registro</a></li>
+          <li><a href="historial.html">Historial</a></li>
+          <li><a href="registro.html">Nuevo paciente</a></li>
         </ul>
       </div>
     </nav>
+    <ul class="sidenav white" id="menu-movil">
+      <li class="blue lighten-2 center-align"><h5 class="indigo-text text-darken-4">Historialito</h5></li>
+      <li class="active"><a class="indigo-text text-darken-4" href="index.html">Pacientes</a></li>
+      <li><a class="indigo-text text-darken-4" href="historial.html">Historial</a></li>
+      <li><a class="indigo-text text-darken-4" href="registro.html">Nuevo paciente</a></li>
+    </ul>
   </header>
 
   <main class="container section">
@@ -30,7 +38,7 @@
     <section class="row" aria-label="Resumen del día">
       <div class="col s12 m4">
         <article class="card-panel blue lighten-2 center-align">
-          <h4 class="indigo-text text-darken-4">24</h4>
+          <h4 id="total-pacientes" class="indigo-text text-darken-4">0</h4>
           <p>Pacientes registrados</p>
         </article>
       </div>
@@ -58,7 +66,7 @@
         </div>
       </div>
 
-      <form class="card-panel" action="index.html" method="get">
+      <form id="form-buscar" class="card-panel" action="index.html" method="get">
         <div class="row valign-wrapper">
           <div class="input-field col s8 m10">
             <input id="buscar" name="buscar" type="search">
@@ -82,7 +90,7 @@
               <th>Acción</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="lista-pacientes">
             <tr>
               <td><strong>Sofía Pérez</strong></td>
               <td>21.345.678-9</td>
@@ -118,7 +126,7 @@
           </tbody>
         </table>
       </div>
-      <p class="black-text">La búsqueda y los datos son demostrativos en esta versión estática.</p>
+      <p class="black-text">Los datos se guardan solamente en este navegador.</p>
     </section>
   </main>
 
@@ -126,5 +134,7 @@
     <div class="container"><p>Historialito — Un registro ordenado ayuda a cuidar mejor</p></div>
     <div class="footer-copyright"><div class="container">Proyecto escolar — Datos ficticios</div></div>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

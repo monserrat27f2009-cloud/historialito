@@ -12,12 +12,20 @@
     <nav class="indigo darken-4" aria-label="Navegación principal">
       <div class="nav-wrapper container">
         <a href="index.html" class="brand-logo">Historialito</a>
-        <ul class="right">
+        <a href="#" data-target="menu-movil" class="sidenav-trigger white-text">Menú</a>
+        <ul class="right hide-on-med-and-down">
           <li><a href="index.html">Pacientes</a></li>
-          <li><a href="registro.html">Nuevo registro</a></li>
+          <li class="active"><a href="historial.html" aria-current="page">Historial</a></li>
+          <li><a href="registro.html">Nuevo paciente</a></li>
         </ul>
       </div>
     </nav>
+    <ul class="sidenav white" id="menu-movil">
+      <li class="blue lighten-2 center-align"><h5 class="indigo-text text-darken-4">Historialito</h5></li>
+      <li><a class="indigo-text text-darken-4" href="index.html">Pacientes</a></li>
+      <li class="active"><a class="indigo-text text-darken-4" href="historial.html">Historial</a></li>
+      <li><a class="indigo-text text-darken-4" href="registro.html">Nuevo paciente</a></li>
+    </ul>
   </header>
 
   <main class="container section">
@@ -26,11 +34,11 @@
     </div>
 
     <section class="card-panel blue lighten-2" aria-labelledby="nombre-paciente">
-      <p class="indigo-text text-darken-4">FICHA CLÍNICA N.º 00124</p>
+      <p id="numero-ficha" class="indigo-text text-darken-4">FICHA CLÍNICA</p>
       <h1 id="nombre-paciente" class="indigo-text text-darken-4">Sofía Pérez</h1>
-      <p><strong>RUT:</strong> 21.345.678-9 &nbsp; | &nbsp; <strong>Edad:</strong> 16 años &nbsp; | &nbsp; <strong>Grupo:</strong> O+</p>
-      <p><strong>Contacto:</strong> +56 9 5555 1234 &nbsp; | &nbsp; sofia.perez@ejemplo.cl</p>
-      <a class="btn indigo darken-4 white-text" href="registro.html">Actualizar ficha</a>
+      <p><strong>RUT:</strong> <span id="rut-paciente"></span> &nbsp; | &nbsp; <strong>Edad:</strong> <span id="edad-paciente"></span> &nbsp; | &nbsp; <strong>Grupo:</strong> <span id="grupo-paciente"></span></p>
+      <p><strong>Contacto:</strong> <span id="telefono-paciente"></span></p>
+      <a id="actualizar-paciente" class="btn indigo darken-4 white-text" href="registro.html">Actualizar ficha</a>
     </section>
 
     <section class="row" aria-label="Información médica importante">
@@ -38,8 +46,7 @@
         <article class="card">
           <div class="card-content">
             <span class="card-title indigo-text text-darken-4">Alergias</span>
-            <div class="chip blue lighten-2 black-text">Polen</div>
-            <div class="chip blue lighten-2 black-text">Penicilina</div>
+            <p id="alergias-paciente">Sin información</p>
           </div>
         </article>
       </div>
@@ -47,8 +54,7 @@
         <article class="card">
           <div class="card-content">
             <span class="card-title indigo-text text-darken-4">Medicamentos</span>
-            <p>Loratadina 10 mg</p>
-            <p class="black-text">Según necesidad</p>
+            <p id="medicamentos-paciente">Sin información</p>
           </div>
         </article>
       </div>
@@ -56,8 +62,7 @@
         <article class="card">
           <div class="card-content">
             <span class="card-title indigo-text text-darken-4">Antecedentes</span>
-            <p>Rinitis alérgica</p>
-            <p>Sin cirugías previas</p>
+            <p id="antecedentes-paciente">Sin información</p>
           </div>
         </article>
       </div>
@@ -69,10 +74,11 @@
           <h2 id="atenciones-titulo" class="indigo-text text-darken-4">Atenciones</h2>
         </div>
         <div class="col s5 m3 right-align">
-          <a class="btn blue lighten-2 black-text" href="registro.html">Agregar atención</a>
+          <a id="agregar-atencion" class="btn blue lighten-2 black-text" href="atencion.html">Agregar atención</a>
         </div>
       </div>
 
+      <div id="lista-atenciones">
       <ul class="collection with-header">
         <li class="collection-header blue lighten-2">
           <h5>12 de agosto de 2026 — Control general</h5>
@@ -108,6 +114,7 @@
           <div class="chip blue lighten-5 black-text">Dra. Camila Soto</div>
         </li>
       </ul>
+      </div>
     </section>
   </main>
 
@@ -115,5 +122,7 @@
     <div class="container"><p>Historialito — Un registro ordenado ayuda a cuidar mejor</p></div>
     <div class="footer-copyright"><div class="container">Proyecto escolar — Datos ficticios</div></div>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

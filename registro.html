@@ -1,92 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Formulario para crear o actualizar un paciente.">
-  <title>Historialito | Paciente</title>
-  <link rel="stylesheet" href="css/materialize.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario para crear o actualizar un paciente.">
+    <title>Historialito | Paciente</title>
+    <link rel="stylesheet" href="css/materialize.css">
 </head>
+
 <body class="blue lighten-5">
-  <header>
-    <nav class="indigo darken-4" aria-label="Navegación principal">
-      <div class="nav-wrapper container">
-        <a href="index.html" class="brand-logo">Historialito</a>
-        <a href="#" data-target="menu-movil" class="sidenav-trigger white-text">Menú</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="index.html">Pacientes</a></li>
-          <li><a href="historial.html">Historial</a></li>
-          <li class="active"><a href="registro.html" aria-current="page">Nuevo paciente</a></li>
+    <header>
+        <nav class="indigo darken-4" aria-label="Navegación principal">
+            <div class="nav-wrapper container">
+                <a href="index.html" class="brand-logo">Historialito</a>
+                <a href="#" data-target="menu-movil" class="sidenav-trigger white-text">Menú</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="index.html">Pacientes</a></li>
+                    <li><a href="historial.html">Historial</a></li>
+                    <li class="active"><a href="registro.html" aria-current="page">Nuevo paciente</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav white" id="menu-movil">
+            <li class="blue lighten-2 center-align">
+                <h5 class="indigo-text text-darken-4">Historialito</h5>
+            </li>
+            <li><a class="indigo-text text-darken-4" href="index.html">Pacientes</a></li>
+            <li><a class="indigo-text text-darken-4" href="historial.html">Historial</a></li>
+            <li class="active"><a class="indigo-text text-darken-4" href="registro.html">Nuevo paciente</a></li>
         </ul>
-      </div>
-    </nav>
-    <ul class="sidenav white" id="menu-movil">
-      <li class="blue lighten-2 center-align"><h5 class="indigo-text text-darken-4">Historialito</h5></li>
-      <li><a class="indigo-text text-darken-4" href="index.html">Pacientes</a></li>
-      <li><a class="indigo-text text-darken-4" href="historial.html">Historial</a></li>
-      <li class="active"><a class="indigo-text text-darken-4" href="registro.html">Nuevo paciente</a></li>
-    </ul>
-  </header>
+    </header>
 
-  <main class="container section">
-    <div class="section">
-      <a class="indigo-text text-darken-4" href="index.html">Volver a pacientes</a>
-      <h1 class="indigo-text text-darken-4">Datos del paciente</h1>
-      <p class="flow-text black-text">Crea una ficha nueva o actualiza los datos personales.</p>
-    </div>
+    <main class="container section">
+        <div class="section">
+            <a class="indigo-text text-darken-4" href="index.html">Volver a pacientes</a>
+            <h1 class="indigo-text text-darken-4">Datos del paciente</h1>
+            <p class="flow-text black-text">Crea una ficha nueva o actualiza los datos personales.</p>
+        </div>
 
-    <form id="form-paciente" class="card-panel white">
-      <section class="section">
-        <h5 class="indigo-text text-darken-4">Datos del paciente</h5>
-        <div class="row">
-          <div class="input-field col s12 m6">
-            <input id="paciente" name="paciente" type="text" required>
-            <label class="active" for="paciente">Nombre completo</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="rut" name="rut" type="text" required>
-            <label class="active" for="rut">RUT</label>
-          </div>
-          <div class="input-field col s12 m4">
-            <input id="nacimiento" name="nacimiento" type="date" required>
-            <label class="active" for="nacimiento">Fecha de nacimiento</label>
-          </div>
-          <div class="input-field col s12 m4">
-            <input id="grupo" name="grupo" type="text">
-            <label class="active" for="grupo">Grupo sanguíneo</label>
-          </div>
-          <div class="input-field col s12 m4">
-            <input id="telefono" name="telefono" type="tel">
-            <label class="active" for="telefono">Teléfono</label>
-          </div>
-        </div>
-        <div class="input-field">
-          <input id="alergias" name="alergias" type="text">
-          <label for="alergias">Alergias</label>
-        </div>
-        <div class="input-field">
-          <input id="medicamentos" name="medicamentos" type="text">
-          <label for="medicamentos">Medicamentos</label>
-        </div>
-        <div class="input-field">
-          <textarea id="antecedentes" name="antecedentes" class="materialize-textarea"></textarea>
-          <label for="antecedentes">Antecedentes</label>
-        </div>
-      </section>
+        <form id="form-paciente" class="card-panel white">
+            <section class="section">
+                <h5 class="indigo-text text-darken-4">Datos del paciente</h5>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="paciente" name="paciente" type="text" required>
+                        <label class="active" for="paciente">Nombre completo</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="rut" name="rut" type="text" required>
+                        <label class="active" for="rut">CI</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input id="nacimiento" name="nacimiento" type="date" required>
+                        <label class="active" for="nacimiento">Fecha de nacimiento</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input id="grupo" name="grupo" type="text">
+                        <label class="active" for="grupo">Grupo sanguíneo</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input id="telefono" name="telefono" type="tel">
+                        <label class="active" for="telefono">Teléfono</label>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input id="alergias" name="alergias" type="text">
+                    <label for="alergias">Alergias</label>
+                </div>
+                <div class="input-field">
+                    <input id="medicamentos" name="medicamentos" type="text">
+                    <label for="medicamentos">Medicamentos</label>
+                </div>
+                <div class="input-field">
+                    <textarea id="antecedentes" name="antecedentes" class="materialize-textarea"></textarea>
+                    <label for="antecedentes">Antecedentes</label>
+                </div>
+            </section>
 
-      <div class="section right-align">
-        <a id="cancelar-paciente" class="btn-flat" href="index.html">Cancelar</a>
-        <button class="btn indigo darken-4 white-text" type="submit">Guardar paciente</button>
-      </div>
-      <p class="black-text">Los datos se guardan solamente en este navegador.</p>
-    </form>
-  </main>
+            <div class="section right-align">
+                <a id="cancelar-paciente" class="btn-flat" href="index.html">Cancelar</a>
+                <button class="btn indigo darken-4 white-text" type="submit">Guardar paciente</button>
+            </div>
+            <p class="black-text">Los datos se guardan solamente en este navegador.</p>
+        </form>
+    </main>
 
-  <footer class="page-footer indigo darken-4 white-text">
-    <div class="container"><p>Historialito — Un registro ordenado ayuda a cuidar mejor</p></div>
-    <div class="footer-copyright"><div class="container">Proyecto escolar — Datos ficticios</div></div>
-  </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="js/app.js"></script>
+    <footer class="page-footer indigo darken-4 white-text">
+        <div class="container">
+            <p>Historialito — Un registro ordenado ayuda a cuidar mejor</p>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">Proyecto escolar — Datos ficticios</div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
+
 </html>

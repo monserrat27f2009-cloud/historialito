@@ -1,128 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ficha e historial clínico ficticio de una paciente.">
-  <title>Historialito | Ficha clínica</title>
-  <link rel="stylesheet" href="css/materialize.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ficha e historial clínico ficticio de una paciente.">
+    <title>Historialito | Ficha clínica</title>
+    <link rel="stylesheet" href="css/materialize.css">
 </head>
+
 <body class="blue lighten-5">
-  <header>
-    <nav class="indigo darken-4" aria-label="Navegación principal">
-      <div class="nav-wrapper container">
-        <a href="index.html" class="brand-logo">Historialito</a>
-        <a href="#" data-target="menu-movil" class="sidenav-trigger white-text">Menú</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="index.html">Pacientes</a></li>
-          <li class="active"><a href="historial.html" aria-current="page">Historial</a></li>
-          <li><a href="registro.html">Nuevo paciente</a></li>
+    <header>
+        <nav class="indigo darken-4" aria-label="Navegación principal">
+            <div class="nav-wrapper container">
+                <a href="index.html" class="brand-logo">Historialito</a>
+                <a href="#" data-target="menu-movil" class="sidenav-trigger white-text">Menú</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="index.html">Pacientes</a></li>
+                    <li class="active"><a href="historial.html" aria-current="page">Historial</a></li>
+                    <li><a href="registro.html">Nuevo paciente</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav white" id="menu-movil">
+            <li class="blue lighten-2 center-align">
+                <h5 class="indigo-text text-darken-4">Historialito</h5>
+            </li>
+            <li><a class="indigo-text text-darken-4" href="index.html">Pacientes</a></li>
+            <li class="active"><a class="indigo-text text-darken-4" href="historial.html">Historial</a></li>
+            <li><a class="indigo-text text-darken-4" href="registro.html">Nuevo paciente</a></li>
         </ul>
-      </div>
-    </nav>
-    <ul class="sidenav white" id="menu-movil">
-      <li class="blue lighten-2 center-align"><h5 class="indigo-text text-darken-4">Historialito</h5></li>
-      <li><a class="indigo-text text-darken-4" href="index.html">Pacientes</a></li>
-      <li class="active"><a class="indigo-text text-darken-4" href="historial.html">Historial</a></li>
-      <li><a class="indigo-text text-darken-4" href="registro.html">Nuevo paciente</a></li>
-    </ul>
-  </header>
+    </header>
 
-  <main class="container section">
-    <div class="section">
-      <a class="indigo-text text-darken-4" href="index.html">Volver a pacientes</a>
-    </div>
-
-    <section class="card-panel blue lighten-2" aria-labelledby="nombre-paciente">
-      <p id="numero-ficha" class="indigo-text text-darken-4">FICHA CLÍNICA</p>
-      <h1 id="nombre-paciente" class="indigo-text text-darken-4">Sofía Pérez</h1>
-      <p><strong>RUT:</strong> <span id="rut-paciente"></span> &nbsp; | &nbsp; <strong>Edad:</strong> <span id="edad-paciente"></span> &nbsp; | &nbsp; <strong>Grupo:</strong> <span id="grupo-paciente"></span></p>
-      <p><strong>Contacto:</strong> <span id="telefono-paciente"></span></p>
-      <a id="actualizar-paciente" class="btn indigo darken-4 white-text" href="registro.html">Actualizar ficha</a>
-    </section>
-
-    <section class="row" aria-label="Información médica importante">
-      <div class="col s12 m4">
-        <article class="card">
-          <div class="card-content">
-            <span class="card-title indigo-text text-darken-4">Alergias</span>
-            <p id="alergias-paciente">Sin información</p>
-          </div>
-        </article>
-      </div>
-      <div class="col s12 m4">
-        <article class="card">
-          <div class="card-content">
-            <span class="card-title indigo-text text-darken-4">Medicamentos</span>
-            <p id="medicamentos-paciente">Sin información</p>
-          </div>
-        </article>
-      </div>
-      <div class="col s12 m4">
-        <article class="card">
-          <div class="card-content">
-            <span class="card-title indigo-text text-darken-4">Antecedentes</span>
-            <p id="antecedentes-paciente">Sin información</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="atenciones-titulo">
-      <div class="row valign-wrapper">
-        <div class="col s7 m9">
-          <h2 id="atenciones-titulo" class="indigo-text text-darken-4">Atenciones</h2>
+    <main class="container section">
+        <div class="section">
+            <a class="indigo-text text-darken-4" href="index.html">Volver a pacientes</a>
         </div>
-        <div class="col s5 m3 right-align">
-          <a id="agregar-atencion" class="btn blue lighten-2 black-text" href="atencion.html">Agregar atención</a>
+
+        <section class="card-panel blue lighten-2" aria-labelledby="nombre-paciente">
+            <p id="numero-ficha" class="indigo-text text-darken-4">FICHA CLÍNICA</p>
+            <h1 id="nombre-paciente" class="indigo-text text-darken-4">Sofía Pérez</h1>
+            <p><strong>RUT:</strong> <span id="rut-paciente"></span> &nbsp; | &nbsp; <strong>Edad:</strong> <span id="edad-paciente"></span> &nbsp; | &nbsp; <strong>Grupo:</strong> <span id="grupo-paciente"></span></p>
+            <p><strong>Contacto:</strong> <span id="telefono-paciente"></span></p>
+            <a id="actualizar-paciente" class="btn indigo darken-4 white-text" href="registro.html">Actualizar ficha</a>
+        </section>
+
+        <section class="row" aria-label="Información médica importante">
+            <div class="col s12 m4">
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-title indigo-text text-darken-4">Alergias</span>
+                        <p id="alergias-paciente">Sin información</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col s12 m4">
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-title indigo-text text-darken-4">Medicamentos</span>
+                        <p id="medicamentos-paciente">Sin información</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col s12 m4">
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-title indigo-text text-darken-4">Antecedentes</span>
+                        <p id="antecedentes-paciente">Sin información</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="atenciones-titulo">
+            <div class="row valign-wrapper">
+                <div class="col s7 m9">
+                    <h2 id="atenciones-titulo" class="indigo-text text-darken-4">Atenciones</h2>
+                </div>
+                <div class="col s5 m3 right-align">
+                    <a id="agregar-atencion" class="btn blue lighten-2 black-text" href="atencion.html">Agregar atención</a>
+                </div>
+            </div>
+
+            <div id="lista-atenciones">
+                <ul class="collection with-header">
+                    <li class="collection-header blue lighten-2">
+                        <h5>12 de agosto de 2026 — Control general</h5>
+                    </li>
+                    <li class="collection-item">
+                        <p><strong>Motivo:</strong> chequeo anual y cansancio.</p>
+                        <p><strong>Signos vitales:</strong> presión 110/70, temperatura 36,4 °C y peso 54 kg.</p>
+                        <p><strong>Diagnóstico:</strong> estado general saludable.</p>
+                        <p><strong>Indicaciones:</strong> hidratación, alimentación balanceada y control en seis meses.</p>
+                        <div class="chip blue lighten-5 black-text">Dra. Valentina Rojas</div>
+                    </li>
+                </ul>
+
+                <ul class="collection with-header">
+                    <li class="collection-header blue lighten-2">
+                        <h5>24 de mayo de 2026 — Alergia estacional</h5>
+                    </li>
+                    <li class="collection-item">
+                        <p><strong>Motivo:</strong> estornudos y picazón en los ojos.</p>
+                        <p><strong>Diagnóstico:</strong> cuadro compatible con alergia al polen.</p>
+                        <p><strong>Tratamiento:</strong> loratadina 10 mg según necesidad.</p>
+                        <div class="chip blue lighten-5 black-text">Dr. Martín Díaz</div>
+                    </li>
+                </ul>
+
+                <ul class="collection with-header">
+                    <li class="collection-header blue lighten-2">
+                        <h5>08 de febrero de 2026 — Dolor de garganta</h5>
+                    </li>
+                    <li class="collection-item">
+                        <p><strong>Diagnóstico:</strong> resfriado común sin signos de complicación.</p>
+                        <p><strong>Indicaciones:</strong> reposo, líquidos y control si aparece fiebre alta.</p>
+                        <div class="chip blue lighten-5 black-text">Dra. Camila Soto</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer indigo darken-4 white-text">
+        <div class="container">
+            <p>Historialito — Un registro ordenado ayuda a cuidar mejor</p>
         </div>
-      </div>
-
-      <div id="lista-atenciones">
-      <ul class="collection with-header">
-        <li class="collection-header blue lighten-2">
-          <h5>12 de agosto de 2026 — Control general</h5>
-        </li>
-        <li class="collection-item">
-          <p><strong>Motivo:</strong> chequeo anual y cansancio.</p>
-          <p><strong>Signos vitales:</strong> presión 110/70, temperatura 36,4 °C y peso 54 kg.</p>
-          <p><strong>Diagnóstico:</strong> estado general saludable.</p>
-          <p><strong>Indicaciones:</strong> hidratación, alimentación balanceada y control en seis meses.</p>
-          <div class="chip blue lighten-5 black-text">Dra. Valentina Rojas</div>
-        </li>
-      </ul>
-
-      <ul class="collection with-header">
-        <li class="collection-header blue lighten-2">
-          <h5>24 de mayo de 2026 — Alergia estacional</h5>
-        </li>
-        <li class="collection-item">
-          <p><strong>Motivo:</strong> estornudos y picazón en los ojos.</p>
-          <p><strong>Diagnóstico:</strong> cuadro compatible con alergia al polen.</p>
-          <p><strong>Tratamiento:</strong> loratadina 10 mg según necesidad.</p>
-          <div class="chip blue lighten-5 black-text">Dr. Martín Díaz</div>
-        </li>
-      </ul>
-
-      <ul class="collection with-header">
-        <li class="collection-header blue lighten-2">
-          <h5>08 de febrero de 2026 — Dolor de garganta</h5>
-        </li>
-        <li class="collection-item">
-          <p><strong>Diagnóstico:</strong> resfriado común sin signos de complicación.</p>
-          <p><strong>Indicaciones:</strong> reposo, líquidos y control si aparece fiebre alta.</p>
-          <div class="chip blue lighten-5 black-text">Dra. Camila Soto</div>
-        </li>
-      </ul>
-      </div>
-    </section>
-  </main>
-
-  <footer class="page-footer indigo darken-4 white-text">
-    <div class="container"><p>Historialito — Un registro ordenado ayuda a cuidar mejor</p></div>
-    <div class="footer-copyright"><div class="container">Proyecto escolar — Datos ficticios</div></div>
-  </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="js/app.js"></script>
+        <div class="footer-copyright">
+            <div class="container">Proyecto escolar — Datos ficticios</div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
+
 </html>

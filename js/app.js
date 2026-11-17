@@ -1,38 +1,34 @@
-const CLAVE = "pacientes";
+// Los datos se guardan en MySQL a través de api/api.php
+const API = "api/api.php";
+let doctorActual = null;
+
+// Le pide algo a la API. Si mandas "datos", se envían (POST); si no, solo se lee (GET).
+async function pedirAPI(accion, datos) {
+  const opciones = datos
+    ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(datos) }
+    : {};
+  const respuesta = await fetch(API + "?accion=" + accion, opciones);
+  const resultado = await respuesta.json();
+
+  // Si no hay sesión iniciada, mandar al login
+  if (respuesta.status === 401 && !document.getElementById("form-login")) {
+    location.href = "login.html";
+  }
+  if (!respuesta.ok) throw new Error(resultado.error || "Error con la base de datos");
+  return resultado;
+}
 
 function leerPacientes() {
-  return JSON.parse(localStorage.getItem(CLAVE)) || [];
+  return pedirAPI("listar");
 }
 
-function guardarPacientes(pacientes) {
-  localStorage.setItem(CLAVE, JSON.stringify(pacientes));
-}
-
-function crearEjemplo() {
-  if (localStorage.getItem(CLAVE)) return;
-
-  guardarPacientes([{
-    id: "1",
-    nombre: "Sofía Pérez",
-    rut: "21.345.678-9",
-    nacimiento: "2010-04-18",
-    grupo: "O+",
-    telefono: "+56 9 5555 1234",
-    alergias: "Polen, penicilina",
-    medicamentos: "Loratadina 10 mg",
-    antecedentes: "Rinitis alérgica, sin cirugías previas",
-    atenciones: [{
-      fecha: "2026-08-12",
-      profesional: "Dra. Valentina Rojas",
-      motivo: "Control general",
-      sintomas: "Cansancio",
-      presion: "110/70",
-      temperatura: "36.4",
-      peso: "54",
-      diagnostico: "Estado general saludable",
-      indicaciones: "Hidratación, descanso y control en seis meses"
-    }]
-  }]);
+async function enviar(accion, datos) {
+  try {
+    return await pedirAPI(accion, datos);
+  } catch (error) {
+    alert(error.message);
+    throw error;
+  }
 }
 
 function escapar(texto) {
@@ -50,11 +46,11 @@ function calcularEdad(fecha) {
   return edad + " años";
 }
 
-function mostrarInicio() {
+async function mostrarInicio() {
   const tabla = document.getElementById("lista-pacientes");
   if (!tabla) return;
 
-  const pacientes = leerPacientes();
+  const pacientes = await leerPacientes();
   document.getElementById("total-pacientes").textContent = pacientes.length;
 
   function dibujar(filtro) {
@@ -87,12 +83,12 @@ function mostrarInicio() {
   });
 }
 
-function mostrarHistorial() {
+async function mostrarHistorial() {
   if (!document.getElementById("nombre-paciente")) return;
 
-  const pacientes = leerPacientes();
+  const pacientes = await leerPacientes();
   const id = new URLSearchParams(location.search).get("id");
-  const paciente = pacientes.find(function (item) { return item.id === id; }) || pacientes[0];
+  const paciente = pacientes.find(function (item) { return String(item.id) === id; }) || pacientes[0];
 
   if (!paciente) {
     document.querySelector("main").innerHTML = "<h4>No hay pacientes registrados.</h4>";
@@ -126,13 +122,13 @@ function mostrarHistorial() {
   }).join("") || '<div class="card-panel white">Este paciente todavía no tiene atenciones.</div>';
 }
 
-function prepararPaciente() {
+async function prepararPaciente() {
   const formulario = document.getElementById("form-paciente");
   if (!formulario) return;
 
   const id = new URLSearchParams(location.search).get("id");
-  const pacientes = leerPacientes();
-  const paciente = pacientes.find(function (item) { return item.id === id; });
+  const pacientes = await leerPacientes();
+  const paciente = pacientes.find(function (item) { return String(item.id) === id; });
 
   if (paciente) {
     document.getElementById("paciente").value = paciente.nombre;
@@ -147,14 +143,9 @@ function prepararPaciente() {
     M.updateTextFields();
   }
 
-  formulario.addEventListener("submit", function (evento) {
+  formulario.addEventListener("submit", async function (evento) {
     evento.preventDefault();
-    let actual = paciente;
-
-    if (!actual) {
-      actual = { id: Date.now().toString(), atenciones: [] };
-      pacientes.push(actual);
-    }
+    const actual = { id: paciente ? paciente.id : null };
 
     actual.nombre = document.getElementById("paciente").value;
     actual.rut = document.getElementById("rut").value;
@@ -165,18 +156,18 @@ function prepararPaciente() {
     actual.medicamentos = document.getElementById("medicamentos").value;
     actual.antecedentes = document.getElementById("antecedentes").value;
 
-    guardarPacientes(pacientes);
-    location.href = "historial.html?id=" + actual.id;
+    const resultado = await enviar("guardar_paciente", actual);
+    location.href = "historial.html?id=" + resultado.id;
   });
 }
 
-function prepararAtencion() {
+async function prepararAtencion() {
   const formulario = document.getElementById("form-atencion");
   if (!formulario) return;
 
   const id = new URLSearchParams(location.search).get("id");
-  const pacientes = leerPacientes();
-  const paciente = pacientes.find(function (item) { return item.id === id; });
+  const pacientes = await leerPacientes();
+  const paciente = pacientes.find(function (item) { return String(item.id) === id; });
 
   if (!paciente) {
     document.querySelector("main").innerHTML = "<h4>Primero debes seleccionar un paciente.</h4>";
@@ -184,14 +175,15 @@ function prepararAtencion() {
   }
 
   document.getElementById("paciente-atencion").textContent = paciente.nombre;
+  document.getElementById("profesional").value = doctorActual.nombre;
   document.getElementById("volver-historial").href = "historial.html?id=" + paciente.id;
   document.getElementById("cancelar-atencion").href = "historial.html?id=" + paciente.id;
 
-  formulario.addEventListener("submit", function (evento) {
+  formulario.addEventListener("submit", async function (evento) {
     evento.preventDefault();
-    paciente.atenciones.push({
+    await enviar("agregar_atencion", {
+      paciente_id: paciente.id,
       fecha: document.getElementById("fecha").value,
-      profesional: document.getElementById("profesional").value,
       motivo: document.getElementById("motivo").value,
       sintomas: document.getElementById("sintomas").value,
       presion: document.getElementById("presion").value,
@@ -201,16 +193,75 @@ function prepararAtencion() {
       indicaciones: document.getElementById("indicaciones").value
     });
 
-    guardarPacientes(pacientes);
     location.href = "historial.html?id=" + paciente.id;
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function prepararLogin() {
+  const formulario = document.getElementById("form-login");
+
+  formulario.addEventListener("submit", async function (evento) {
+    evento.preventDefault();
+    try {
+      await pedirAPI("login", {
+        correo: document.getElementById("correo").value,
+        clave: document.getElementById("clave").value
+      });
+      location.href = "index.html";
+    } catch (error) {
+      document.getElementById("error-login").textContent = error.message;
+    }
+  });
+}
+
+async function prepararDoctores() {
+  const formulario = document.getElementById("form-doctor");
+  if (!formulario) return;
+
+  const doctores = await pedirAPI("listar_doctores");
+  document.getElementById("lista-doctores").innerHTML = doctores.map(function (doctor) {
+    return `<tr><td>${escapar(doctor.nombre)}</td><td>${escapar(doctor.correo)}</td></tr>`;
+  }).join("");
+
+  formulario.addEventListener("submit", async function (evento) {
+    evento.preventDefault();
+    await enviar("crear_doctor", {
+      nombre: document.getElementById("nombre-nuevo").value,
+      correo: document.getElementById("correo-nuevo").value,
+      clave: document.getElementById("clave-nueva").value
+    });
+    location.reload();
+  });
+}
+
+function prepararMenu() {
+  document.querySelectorAll(".nombre-doctor").forEach(function (elemento) {
+    elemento.textContent = doctorActual.nombre;
+  });
+
+  document.querySelectorAll(".cerrar-sesion").forEach(function (enlace) {
+    enlace.addEventListener("click", async function (evento) {
+      evento.preventDefault();
+      await pedirAPI("logout", {});
+      location.href = "login.html";
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
   M.Sidenav.init(document.querySelectorAll(".sidenav"));
-  crearEjemplo();
-  mostrarInicio();
-  mostrarHistorial();
-  prepararPaciente();
-  prepararAtencion();
+
+  // En la página de login no se necesita sesión
+  if (document.getElementById("form-login")) {
+    prepararLogin();
+    return;
+  }
+
+  try {
+    doctorActual = await pedirAPI("yo");   // si no hay sesión, te manda a login.html
+    prepararMenu();
+    await Promise.all([mostrarInicio(), mostrarHistorial(), prepararPaciente(), prepararAtencion(), prepararDoctores()]);
+  } catch (error) {
+    if (doctorActual) alert("Error con la base de datos: " + error.message);
+  }
 });
